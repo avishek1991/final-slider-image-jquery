@@ -1,0 +1,241 @@
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<title>END  FIND  EQ Tutorial</title>
+<script>
+$(document).ready(function() {
+
+		//$(".avi:gt(0)").hide();//first div chara hide all div [ :gt(index) ]filter
+		//OR
+		//$(".avi").hide();
+		//$(".avi").eq(0).show();//first div chara hide all div [ gt(0) ]	
+	
+		/*$(function load() {
+		$('.avi:first').fadeOut(1000).next().fadeIn(1000).end().appendTo('.slideshow');
+		setTimeout(load, 4000);
+		})();*/
+		
+		
+		//setInterval(function() {
+		//$('.avi:first').fadeOut(1000).next().fadeIn(1000).end().appendTo('.slideshow');
+		//}, 3000);
+		
+		
+			
+		//********OR********//
+ 
+
+		//function main() {
+		//end() konoo argument pass korena and return kore main selector
+		//$('.avi:first').fadeOut(1000).next().fadeIn(1000).end().appendTo('.slideshow');//one line function//
+		//or//
+		//$('.avi:first').fadeOut(1000).next().fadeIn(1000);
+		//$('.avi:first').appendTo('.slideshow');//without using end() function big size of code
+		//}
+		//var continu= setInterval( main , 5000);
+		
+		//$('.next').click(function(){
+		//clearInterval(continu);
+		//$('.avi:first').fadeOut(1000).next().fadeIn(1000).end().appendTo('.slideshow');
+		//continu= setInterval( main , 5000);
+		//})
+	
+		//$('.previous').click(function(){
+		//clearInterval(continu);
+		//$('.avi:first').fadeOut(1000);
+		//$(".avi:last").fadeIn(1000).prependTo(".slideshow"); 
+		//continu= setInterval( main , 5000);
+		//})
+		
+		
+		/******first vertion*****/
+			
+		/*$(".avi:gt(0)").hide();//first div chara hide all div [ :gt(index) ]filter	
+
+        // fade out current slide (first), fade in next slide and move first slide to end
+        var nextSlide = function() { 
+            $(".avi:first")
+            .fadeOut(1000)
+            .next()
+            .fadeIn(1000)
+            .end()
+            .appendTo(".slideshow");
+        }
+
+       var nextSlideTimer = setInterval(nextSlide,  9000);
+
+        // fade out current slide (first) and move last slide to top and fade in
+        $(".previous").click(function() {
+            clearInterval(nextSlideTimer);
+
+            $(".avi:first")
+            .fadeOut(1000);
+            $(".avi:last")
+            .fadeIn(1000)
+            .prependTo(".slideshow");
+
+            nextSlideTimer = setInterval(nextSlide, 9000)
+            setTimeout(nextSlideTimer, 9000)
+        });
+
+        $(".next").click(function() {
+            clearInterval(nextSlideTimer);
+
+            $(".avi:first")
+            .fadeOut(1000)
+            .next()
+            .fadeIn(1000)
+            .end()
+            .appendTo(".slideshow");
+
+            nextSlideTimer = setInterval(nextSlide, 9000)
+            setTimeout(nextSlideTimer, 9000)
+        });
+
+       $(".slideshow").hover(function() {
+         $(".previous ,.next").fadeToggle('slow');
+        });*/
+		
+		//********latest vertion***********//
+		
+		$(".avi:gt(0)").hide();//first div chara hide all div [ :gt(index) ]filter	
+
+        // fade out current slide (first), fade in next slide and move first slide to end
+        function autoplay() { 
+         $(".avi:first").fadeOut(1000).next().fadeIn(1000).end().appendTo(".slideshow");
+        }
+		var stop = setInterval(autoplay,  9000);
+
+        // fade out current slide (first) and move last slide to top and fade in
+        $(".previous").click(function() {
+			clearInterval(stop);
+            $(".avi:first").fadeOut(1000);
+			$(".avi:last").fadeIn(1000).prependTo(".slideshow");
+			});
+
+        $(".next").click(function() {
+         
+			clearInterval(stop);          
+			autoplay();
+		});
+
+       $(".slideshow").hover(function() {
+         $(".previous ,.next").fadeToggle('slow');
+        });
+		
+		
+	/*END AND FIND TUTORIAL*/
+	
+	$(".btnend").click(function(){
+	$(".MainDiv").find( "#span1" ).addClass("yellow").end().find("#span2").css("background-color", "red").end().animate({height: 250});
+	//end function barbar MainDiv return kore
+	});
+		
+		
+		
+		
+})
+
+</script>
+<style>
+.slideshow {
+  position: relative;
+  width: 240px;
+  height: 240px;
+  padding: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+.avi{
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  color:#FFFFFF;
+  text-align:center;
+}
+
+.previous{
+    position: relative;
+    cursor: pointer;
+    bottom: 156px;
+    right: 31px;
+}
+
+.next{
+	position: absolute;
+    position: relative;
+    left: 226px;
+    cursor: pointer;
+    bottom: 156px;
+}
+.cover{margin:80px auto;width:272px;}
+	
+	
+	
+	
+	
+	
+	
+	.yellow{background: yellow;}
+    .MainDiv{
+      display: block;
+      border: 3px solid black;
+      color: red;
+      padding: 5px;
+      margin: 25px auto;
+      width:250px;
+     }
+    #span1 ,#span2{
+      display: block;
+      border: 3px solid green;
+      color: black;
+      padding: 5px;
+      margin: 25px;
+      width:200px;
+     }
+		
+</style>
+</head>
+<body>
+<div class="cover"><!--start div slider--->
+		<div class="slideshow">
+		   <div class="avi" alt="1" style="background-color:#2AE972;">
+			<h5>FIRST SLIDER 1</h5>
+		   </div>
+		   <div class="avi" alt="2" style="background-color:#00ADEB;">
+			  <h5>SECOND SLIDER 2</h5>
+		   </div>
+		   <div class="avi" alt="3" style="background-color:#FF9E37;">
+			 <h5>THIRD SLIDER 3</h5>
+		   </div>
+		   <div class="avi" alt="4" style="background-color:#2AE972;">
+			<h5>FORTH SLIDER 4</h5>
+		   </div>
+		   <div class="avi" alt="5" style="background-color:#00ADEB;">
+			  <h5>FIFTH SLIDER 5</h5>
+		   </div>
+		   <div class="avi" alt="6" style="background-color:#FF9E37;">
+			 <h5>SIXTH SLIDER 6</h5>
+		   </div>	   
+		</div>
+		<button class="previous"><<</button>
+		<input type="button" value=">>" class="next">
+</div><!--end div slider--->
+
+
+
+
+
+	<div style="text-align:center;"><!--start end and find tutorial-->
+		<h2>jQuery find(); .end(); tutorial</h2>
+		<button class="btnend">CLICK</button>
+		<div class="MainDiv">div
+		<span id="span1">Span 1</span>
+		<span id="span2">Span2</span>
+		</div>
+	</div><!--end-- end() and find() tutorial-->
+	
+</body>
+</html>
